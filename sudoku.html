@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku - Il Mio Sito Web</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sudoku.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">Il Mio Sito</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#foto">Le Mie Foto</a></li>
+                <li><a href="index.html#minecraft">Minecraft</a></li>
+                <li><a href="index.html#inglese-renzi">Inglese di Renzi</a></li>
+                <li><a href="sudoku.html" class="active">Sudoku</a></li>
+                <li><a href="index.html#contatti">Contatti</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sudoku-container">
+        <h1>Gioca a Sudoku</h1>
+        
+        <div class="game-controls">
+            <button id="newGame" class="btn">Nuova Partita</button>
+            <select id="difficulty" class="btn">
+                <option value="easy">Facile</option>
+                <option value="medium">Medio</option>
+                <option value="hard">Difficile</option>
+            </select>
+            <button id="solve" class="btn">Risolvi</button>
+        </div>
+
+        <div class="sudoku-board" id="sudokuBoard"></div>
+
+        <div class="number-pad">
+            <button class="number-btn" data-number="1">1</button>
+            <button class="number-btn" data-number="2">2</button>
+            <button class="number-btn" data-number="3">3</button>
+            <button class="number-btn" data-number="4">4</button>
+            <button class="number-btn" data-number="5">5</button>
+            <button class="number-btn" data-number="6">6</button>
+            <button class="number-btn" data-number="7">7</button>
+            <button class="number-btn" data-number="8">8</button>
+            <button class="number-btn" data-number="9">9</button>
+            <button class="number-btn delete" data-number="0">
+                <i class="fas fa-eraser"></i>
+            </button>
+        </div>
+
+        <div class="game-status">
+            <span id="timer">00:00</span>
+            <span id="status"></span>
+        </div>
+    </div>
+
+    <script src="sudoku.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
