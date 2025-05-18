@@ -145,6 +145,67 @@ class Sudoku {
             cell.addEventListener('input', (e) => this.handleInput(e, cell));
         });
 
+        // Event listener per la tastiera
+        document.addEventListener('keydown', (e) => {
+            if (!this.selectedCell) return;
+            
+            const currentRow = parseInt(this.selectedCell.dataset.row);
+            const currentCol = parseInt(this.selectedCell.dataset.col);
+            
+            let nextRow = currentRow;
+            let nextCol = currentCol;
+            
+            switch(e.key) {
+                case 'ArrowUp':
+                    nextRow = Math.max(0, currentRow - 1);
+                    e.preventDefault();
+                    break;
+                case 'ArrowDown':
+                    nextRow = Math.min(8, currentRow + 1);
+                    e.preventDefault();
+                    break;
+                case 'ArrowLeft':
+                    nextCol = Math.max(0, currentCol - 1);
+                    e.preventDefault();
+                    break;
+                case 'ArrowRight':
+                    nextCol = Math.min(8, currentCol + 1);
+                    e.preventDefault();
+                    break;
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    if (!this.selectedCell.readOnly) {
+                        this.selectedCell.value = e.key;
+                        this.handleInput({ target: this.selectedCell }, this.selectedCell);
+                    }
+                    e.preventDefault();
+                    break;
+                case 'Backspace':
+                case 'Delete':
+                    if (!this.selectedCell.readOnly) {
+                        this.selectedCell.value = '';
+                        this.handleInput({ target: this.selectedCell }, this.selectedCell);
+                    }
+                    e.preventDefault();
+                    break;
+            }
+            
+            if (nextRow !== currentRow || nextCol !== currentCol) {
+                const nextCell = document.querySelector(`.cell[data-row="${nextRow}"][data-col="${nextCol}"]`);
+                if (nextCell) {
+                    this.selectCell(nextCell);
+                    nextCell.focus();
+                }
+            }
+        });
+
         // Event listeners per i pulsanti dei numeri
         const numberButtons = document.querySelectorAll('.number-btn');
         numberButtons.forEach(button => {
